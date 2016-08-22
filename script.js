@@ -1,3 +1,5 @@
+var consActive = false;
+
 $(document).ready(function(){
   navigator.bluetooth.requestDevice({
     filters: [{
@@ -5,9 +7,17 @@ $(document).ready(function(){
     }]
   })
   .then(device => {
-
+    cons('ok');
   })
   .catch(error => {
-    console.log(error);
+    cons(error);
   });
 });
+
+function cons(string){
+  if(!consActive){
+    $('body').append('<textarea id="cons"></textarea>');
+    consActive = true;
+  }
+  $('#cons').val(string);
+}
