@@ -8,10 +8,10 @@ $(document).ready(function(){
       }]
     })
     .then(device => {
-      cons('ok');
+      console.log(device);
     })
     .catch(error => {
-      cons(error);
+      console.log(error);
     });
   });
 });
