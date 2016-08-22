@@ -1,16 +1,18 @@
 var consActive = false;
 
 $(document).ready(function(){
-  navigator.bluetooth.requestDevice({
-    filters: [{
-      services: ['battery_service']
-    }]
-  })
-  .then(device => {
-    cons('ok');
-  })
-  .catch(error => {
-    cons(error);
+  $('#startScan').on('click', function(){
+    navigator.bluetooth.requestDevice({
+      filters: [{
+        services: ['battery_service']
+      }]
+    })
+    .then(device => {
+      cons('ok');
+    })
+    .catch(error => {
+      cons(error);
+    });
   });
 });
 
