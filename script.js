@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 function cons(string){
   if(!consActive){
-    $('body').append('<textarea id="cons"></textarea>');
+    $('body').append('<textarea rows="10" cols="100" id="cons"></textarea>');
     consActive = true;
   }
   $('#cons').val(string);
