@@ -1,0 +1,86 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto';
+
+html, body {
+  height: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+}
+.chat-container {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  height: 90%;
+  margin: auto;
+  background: rgba(0,0,0,0.01);
+}
+.history-container {
+  width: 100%;
+  height: calc(100% - 70px);
+  background: rgba(0,0,0,0.01);
+}
+.history-item-container::after {
+  content: '';
+  display: block;
+  clear: both;
+  float: none;
+}
+.history-item {
+  position: relative;
+  max-width: 50%;
+  margin: 12px 25px 0 25px;
+  height: auto;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 3px;
+}
+.history-item::before {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 2px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+.user-item {
+  background: #333745;
+  float: right;
+  text-align: right;
+}
+.bot-item {
+  background: #EA2E49;
+  float: left;
+}
+.user-item::before {
+  right: -8px;
+  top: 4px;
+  border-left: 10px solid #333745;
+}
+.bot-item::before {
+  left: -8px;
+  top: 4px;
+  border-right: 10px solid #EA2E49;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  padding: 15px;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.05);
+}
+.input-container input {
+  width: 100%;
+  border: none;
+  margin: 0;
+  height: 100%;
+  background: rgba(255,255,255);
+  outline: none;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  font-size: 1.25em;
+  border-radius: 3px;
+}
