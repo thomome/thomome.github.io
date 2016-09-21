@@ -1,12 +1,11 @@
 var inp;
 var hist;
 var foc;
-var index = 0;
 
 $(document).ready(function(){
   inp = $('.input-container input');
   hist = $('.history-container');
-  foc = false;
+  foc = true;
   inp.focus();
   
   $(window).on('keypress', function(e){
@@ -17,8 +16,8 @@ $(document).ready(function(){
       messageUser(value);
       
       window.setTimeout(function(){
-        messageBot();
-      }, 1000)
+        messageBot(value);
+      }, 1000);
     }
   });
 
@@ -31,14 +30,25 @@ $(document).ready(function(){
 
 function messageUser(value){
   hist.append('<div class="history-item-container"><div class="history-item user-item">' + value + '</div></div>');
+  scrollBot();
 }
 
-function messageBot(){
-  $.getJSON('data.json', function(data){
-    hist.append('<div class="history-item-container"><div class="history-item bot-item">' + data.conversation[index].response + '</div></div>');
-    index++;
+function messageBot(value){
+  var request = $.ajax({
+    url: "https://api.api.ai/v1/query?query=" + value + "&v=20150910&sessionId=&lang=en",
+    method: "GET",
+    dataType: "json",
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader ("Authorization", "Bearer ba85a6f76be6480698b089a1c20dd14b");
+    }
+  }).done(function(data){
+    hist.append('<div class="history-item-container"><div class="history-item bot-item">' + data.result.fulfillment.speech + '</div></div>');
+    scrollBot();
   });
   
+}
+function scrollBot(){
+  hist.scrollTop(hist.scrollTop() + hist.height());
 }
 
 
